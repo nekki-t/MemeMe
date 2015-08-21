@@ -16,6 +16,8 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     // MARK: - Variables
     var originalY:CGFloat = 0.0
+    var editMeme: Meme?
+    var memeIndex: Int?
     
     // MARK: - IBOutlets
     @IBOutlet weak var textTop: UITextField!
@@ -23,7 +25,11 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var targetImage: UIImageView!
     @IBOutlet weak var itemBtnCamera: UIBarButtonItem!
     @IBOutlet weak var itemBtnCancel: UIBarButtonItem!
-    @IBOutlet weak var itemBtnShare: UIBarButtonItem!
+    @IBOutlet weak var itemBtnShare: UIBarButtonItem!    
+    
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var toolBar: UIToolbar!
+    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -32,8 +38,14 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         // Top and Bottom textFields
         setTextFields()
         
-        itemBtnCancel.enabled = false
-        itemBtnShare.enabled = false
+        if let target = editMeme {
+            textTop.text = target.topText
+            textBottom.text = target.bottomText
+            targetImage.image = target.originalImage
+            view.sendSubviewToBack(targetImage)
+        } else {
+            itemBtnShare.enabled = false
+        }
         
         originalY = view.frame.origin.y
     }
@@ -79,13 +91,18 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         activityViewController.completionWithItemsHandler = {
             (activityType, completed: Bool, returnedItem: Array!, error: NSError!) in
             if completed {
-                var meme = Meme(topText: self.textTop.text, bottomText: self.textBottom.text, originalImage: self.targetImage.image, memedImage: memedImage)
-                //for v2.0
+                self.save()
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
     }
+    
+    @IBAction func editCanceled(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)        
+    }
+    
     
     // MARK: - Functions
     
@@ -155,6 +172,7 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             targetImage.image = image
+            view.sendSubviewToBack(targetImage)
             itemBtnShare.enabled = true
         }
         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -186,8 +204,8 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         view.endEditing(true)
         
         //hide navbar & toolbar
-        navigationController?.navigationBar.hidden = true
-        navigationController?.toolbar.hidden = true
+        navBar.hidden = true
+        toolBar.hidden = true
         
         //generate image
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 0)
@@ -196,10 +214,26 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         UIGraphicsEndImageContext()
         
         //show navbar & toolbar
-        navigationController?.navigationBar.hidden = false
-        navigationController?.toolbar.hidden = false
+        navBar.hidden = false
+        toolBar.hidden = false
         
         return memedImage
+    }
+    
+    func save() {
+        if var targetMeme = editMeme {
+            // update after edited
+            targetMeme.topText = textTop.text
+            targetMeme.bottomText = textBottom.text
+            targetMeme.originalImage = targetImage.image
+            targetMeme.memedImage = generateMemedImage()
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes[memeIndex!] = targetMeme
+        } else {
+            // create
+            var meme = Meme(topText: self.textTop.text, bottomText: self.textBottom.text, originalImage: self.targetImage.image, memedImage: generateMemedImage())
+            
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+        }
     }
 }
 
