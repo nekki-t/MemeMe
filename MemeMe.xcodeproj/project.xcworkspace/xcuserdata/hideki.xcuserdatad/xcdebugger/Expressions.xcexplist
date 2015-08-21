@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "MemeMe.EditMemeViewController.editCanceled (MemeMe.EditMemeViewController)(ObjectiveC.UIBarButtonItem) -&gt; ():EditMemeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MemeMe.EditMemeViewController.imagePickerController (MemeMe.EditMemeViewController)(ObjectiveC.UIImagePickerController, didFinishPickingMediaWithInfo : Swift.Dictionary&lt;ObjectiveC.NSObject, Swift.AnyObject&gt;) -&gt; ():EditMemeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "toolBar.layer.zPosition">
+            </PersistentString>
+            <PersistentString
+               value = "targetImage.layer.zPosition">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MemeMe.EditMemeViewController.save (MemeMe.EditMemeViewController)() -&gt; ():EditMemeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(UIApplication.sharedApplication().delegate as! AppDelegate).memes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MemeMe.MemeCollectionViewController.viewWillAppear (MemeMe.MemeCollectionViewController)(Swift.Bool) -&gt; ():MemeCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "memes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
