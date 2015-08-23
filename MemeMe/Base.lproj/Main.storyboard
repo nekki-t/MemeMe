@@ -30,26 +30,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAd-xA-87i">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="LKF-d8-Fot"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem id="CDY-fr-1XK">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="ZQ2-g2-cbR">
-                                            <connections>
-                                                <action selector="btnShareTapped:" destination="vXZ-lx-hvc" id="2bj-vz-lUJ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="wv6-dk-lWg">
-                                            <connections>
-                                                <action selector="editCanceled:" destination="vXZ-lx-hvc" id="kVi-Ax-Qdk"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDK-M5-b0y">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <items>
@@ -72,18 +52,15 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="ahG-OZ-PdL" secondAttribute="trailing" constant="-16" id="1yb-Hc-gWJ"/>
                             <constraint firstItem="ahG-OZ-PdL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="4Nh-jq-w7i"/>
+                            <constraint firstItem="Zra-lF-1G8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="5" id="DDk-5e-xpy"/>
                             <constraint firstItem="sHB-xW-x3Y" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="DQz-XP-egx"/>
-                            <constraint firstItem="fAd-xA-87i" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="IQH-hP-q8y"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ahG-OZ-PdL" secondAttribute="bottom" id="NpA-B2-YAD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fAd-xA-87i" secondAttribute="trailing" constant="-16" id="O1x-Zy-Bcc"/>
                             <constraint firstItem="Zra-lF-1G8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="QsH-Al-p9l"/>
-                            <constraint firstItem="fAd-xA-87i" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="RZ1-8S-Oa6"/>
                             <constraint firstItem="TDK-M5-b0y" firstAttribute="top" secondItem="sHB-xW-x3Y" secondAttribute="bottom" constant="5" id="Rl9-S3-Aqk"/>
                             <constraint firstItem="Zra-lF-1G8" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="SOp-CY-Pov"/>
                             <constraint firstItem="sHB-xW-x3Y" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="SvU-ng-47d"/>
                             <constraint firstItem="sHB-xW-x3Y" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="UEG-wB-8Fz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TDK-M5-b0y" secondAttribute="trailing" constant="-16" id="kra-vJ-Dqp"/>
-                            <constraint firstItem="Zra-lF-1G8" firstAttribute="top" secondItem="fAd-xA-87i" secondAttribute="bottom" constant="5" id="pIk-Vl-a8l"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="TDK-M5-b0y" secondAttribute="bottom" id="rhi-kN-iAp"/>
                             <constraint firstItem="sHB-xW-x3Y" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="s1s-4q-hfu"/>
                             <constraint firstItem="TDK-M5-b0y" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="vIS-Nq-ARS"/>
@@ -91,13 +68,17 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="DhM-ml-4jA"/>
+                    <navigationItem key="navigationItem" id="DhM-ml-4jA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ljc-LQ-KND">
+                            <connections>
+                                <action selector="btnShareTapped:" destination="vXZ-lx-hvc" id="Byw-dk-xHt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="itemBtnCamera" destination="XAt-5v-E95" id="bpr-yN-R5d"/>
-                        <outlet property="itemBtnCancel" destination="wv6-dk-lWg" id="Q7A-CM-lQ9"/>
-                        <outlet property="itemBtnShare" destination="ZQ2-g2-cbR" id="gRC-c4-WaN"/>
-                        <outlet property="navBar" destination="fAd-xA-87i" id="ZLt-63-ywT"/>
+                        <outlet property="itemBtnShare" destination="Ljc-LQ-KND" id="i5O-OA-aaf"/>
                         <outlet property="targetImage" destination="ahG-OZ-PdL" id="YJh-lY-UTG"/>
                         <outlet property="textBottom" destination="sHB-xW-x3Y" id="Y6R-lB-Pwl"/>
                         <outlet property="textTop" destination="Zra-lF-1G8" id="du7-7C-5ho"/>
@@ -106,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2329" y="317"/>
+            <point key="canvasLocation" x="3141" y="317"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bIp-tl-cLr">
@@ -369,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irv-xj-VMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2297" y="1165"/>
+            <point key="canvasLocation" x="2669" y="1164"/>
         </scene>
         <!--Table-->
         <scene sceneID="gpd-3c-gbZ">
@@ -408,6 +389,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0j-jd-GSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="913" y="1318"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xPe-qk-Z1Y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bJh-sR-Uw9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="raK-2G-lu4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Pg5-Nl-PzT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MYL-m5-lB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2329" y="317"/>
         </scene>
     </scenes>
 </document>

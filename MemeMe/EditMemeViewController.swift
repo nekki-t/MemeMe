@@ -24,10 +24,7 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var textBottom: UITextField!
     @IBOutlet weak var targetImage: UIImageView!
     @IBOutlet weak var itemBtnCamera: UIBarButtonItem!
-    @IBOutlet weak var itemBtnCancel: UIBarButtonItem!
-    @IBOutlet weak var itemBtnShare: UIBarButtonItem!    
-    
-    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var itemBtnShare: UIBarButtonItem!
     @IBOutlet weak var toolBar: UIToolbar!
     
     
@@ -55,11 +52,13 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         itemBtnCamera.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
         subscribeToKeyboardNotification()
+        tabBarController?.tabBar.hidden = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotification()
+        tabBarController?.tabBar.hidden = false
     }
 
     // MARK: - IBActions
@@ -92,15 +91,11 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
             (activityType, completed: Bool, returnedItem: Array!, error: NSError!) in
             if completed {
                 self.save()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController?.popViewControllerAnimated(true)
             }
         }
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func editCanceled(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)        
     }
     
     
@@ -117,25 +112,27 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
             NSStrokeWidthAttributeName : -3.0
         ]
         
-        textTop.defaultTextAttributes = memeTextAttributes
-        textBottom.defaultTextAttributes = memeTextAttributes
-        
-        // alignment
-        textTop.textAlignment = .Center
-        textBottom.textAlignment = .Center
-        
-        // borderstyle
-        textTop.borderStyle = .None
-        textBottom.borderStyle = .None
-        
-        // delegate
-        textTop.delegate = self
-        textBottom.delegate = self
+        // same settings
+        setTextFieldAttributes(textTop, textAttributes: memeTextAttributes)
+        setTextFieldAttributes(textBottom, textAttributes: memeTextAttributes)
         
         // set default texts -> values might be changed
         textTop.text = defaultTopText
         textBottom.text = defaultBottomText
+    }
+    
+    func setTextFieldAttributes(textField: UITextField, textAttributes: [String: NSObject]) {
+        //textAttributes
+        textField.defaultTextAttributes = textAttributes
         
+        // alignment
+        textField.textAlignment = .Center
+        
+        // borderstyle
+        textField.borderStyle = .None
+        
+        // delegate
+        textField.delegate = self
     }
     
     // to move up the imageView, only for the bottom textfield
@@ -204,7 +201,7 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         view.endEditing(true)
         
         //hide navbar & toolbar
-        navBar.hidden = true
+        navigationController?.navigationBar.hidden = true
         toolBar.hidden = true
         
         //generate image
@@ -214,7 +211,7 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
         UIGraphicsEndImageContext()
         
         //show navbar & toolbar
-        navBar.hidden = false
+        navigationController?.navigationBar.hidden = false
         toolBar.hidden = false
         
         return memedImage

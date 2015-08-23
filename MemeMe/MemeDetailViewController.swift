@@ -45,7 +45,7 @@ class MemeDetailViewController: UIViewController {
         editMemeVC.memeIndex = memeIndex
         editMemeVC.editMeme = meme
         
-        presentViewController(editMemeVC, animated: true, completion: nil)
+        navigationController?.pushViewController(editMemeVC, animated: true)
     }
     
     @IBAction func deleteMeme(sender: UIButton) {
