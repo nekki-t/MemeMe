@@ -21,12 +21,8 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     // MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         memes = applicationDelegate.memes
         memeTableView.reloadData()
@@ -63,7 +59,9 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - IBActions
     @IBAction func addMeme(sender: UIBarButtonItem) {
         let editMemeVC = storyboard?.instantiateViewControllerWithIdentifier("EditMemeViewController") as! EditMemeViewController
-        presentViewController(editMemeVC, animated: true, completion: nil)
+        
+        //presentViewController(editMemeVC, animated: true, completion: nil)
+        navigationController?.pushViewController(editMemeVC, animated: true)
     }
     
 }

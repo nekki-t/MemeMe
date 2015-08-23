@@ -18,10 +18,6 @@ class MemeCollectionViewController:UIViewController, UICollectionViewDelegate, U
     
     
     // MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.hidden = false
@@ -56,6 +52,6 @@ class MemeCollectionViewController:UIViewController, UICollectionViewDelegate, U
     @IBAction func addMeme(sender: UIBarButtonItem) {
         let editMemeVC = storyboard?.instantiateViewControllerWithIdentifier("EditMemeViewController") as! EditMemeViewController
         
-        presentViewController(editMemeVC, animated: true, completion: nil)
+        navigationController?.pushViewController(editMemeVC, animated: true)
     }
 }
