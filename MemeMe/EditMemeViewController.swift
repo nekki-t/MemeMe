@@ -141,7 +141,7 @@ class EditMemeViewController: UIViewController, UITextFieldDelegate, UIImagePick
     // to move up the imageView, only for the bottom textfield
     func keyboardWillShow(notification: NSNotification) {
         if textBottom.editing{
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     

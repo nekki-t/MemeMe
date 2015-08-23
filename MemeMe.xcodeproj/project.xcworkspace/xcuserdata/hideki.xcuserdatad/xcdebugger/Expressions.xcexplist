@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MemeMe.EditMemeViewController.keyboardWillShow (MemeMe.EditMemeViewController)(ObjectiveC.NSNotification) -&gt; ():EditMemeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view.frame.origin.y">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MemeMe.EditMemeViewController.editCanceled (MemeMe.EditMemeViewController)(ObjectiveC.UIBarButtonItem) -&gt; ():EditMemeViewController.swift">
          <PersistentStrings>
             <PersistentString
