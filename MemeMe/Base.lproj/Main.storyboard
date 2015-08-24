@@ -69,7 +69,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="DhM-ml-4jA">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ljc-LQ-KND">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Ljc-LQ-KND">
                             <connections>
                                 <action selector="btnShareTapped:" destination="vXZ-lx-hvc" id="Byw-dk-xHt"/>
                             </connections>
